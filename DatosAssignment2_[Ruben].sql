@@ -1,29 +1,3 @@
-CREATE TABLE IF NOT EXISTS student(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    curp VARCHAR(18) NOT NULL UNIQUE,
-    count_number VARCHAR(10) NOT NULL UNIQUE
-);
-CREATE TABLE IF NOT EXISTS course(
-	id INT NOt NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    price DECIMAL(14,2)
-);
-CREATE TABLE IF NOT EXISTS teacher(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    topic VARCHAR(30),
-    courses_id INT NOt NULL,
-    FOREIGN KEY (courses_id) REFERENCES couse(id)
-);
-CREATE TABLE IF NOT EXISTS student_course(
-	students_id VARCHAR(30),
-    courses_id VARCHAR(30),
-    date DATE NOT NULL
-);
-
-//*****************Versión 2 *************//
-
 CREATE TABLE IF NOT EXISTS students(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(30) NOT NULL,
@@ -39,11 +13,13 @@ CREATE TABLE IF NOT EXISTS teachers(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(30) NOT NULL,
 topic VARCHAR(30),
-course_id INT NOt NULL,
-FOREIGN KEY (course_id) REFERENCES courses(id)
+courses_id INT NOt NULL,
+FOREIGN KEY (courses_id) REFERENCES courses(id)
 );
 CREATE TABLE IF NOT EXISTS students_courses(
 	student_id VARCHAR(30) NOT NULL,
-course_id VARCHAR(30) NOT NULL,
+	course_id VARCHAR(30) NOT NULL,
 datecourse DATE NOT NULL
+FOREIGN KEY (students_id) REFERENCES students(id)
+FOREIGN KEY (courses_id) REFERENCES courses(id)
 );
